@@ -15,11 +15,8 @@ test("As user i want to login successfully", async ({ page }) => {
   await page.locator('[href="/auth/login"]').click();
   await expect(page).toHaveTitle("Login | Mesti Minum");
 
-  const userEmail = process.env.USER_EMAIL;
-  const userPassword = process.env.USER_PASSWORD;
-
-  if (!userEmail || !userPassword)
-    throw new Error("Environment variables not set");
+  const userEmail = process.env.USER_EMAIL as string;
+  const userPassword = process.env.USER_PASSWORD as string;
 
   await page.getByLabel("Email address").fill(userEmail);
   await page.getByLabel("Password").fill(userPassword);
