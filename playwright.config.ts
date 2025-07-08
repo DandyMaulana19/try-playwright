@@ -34,9 +34,16 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    // Setup project
+    { name: "setup", testMatch: /.*\.setup\.ts/ },
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
+      use: {
+        ...devices["Desktop Chrome"],
+        // Use prepared auth state.
+        storageState: "playwright/.auth/user.json",
+      },
+      dependencies: ["setup"],
     },
 
     // {
@@ -77,3 +84,8 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
+
+// Command to launch a Record
+// npx playwright codegen http://localhosst:8000 -o tests/record.spec.ts
+// Command to launch a Record with Token
+// npx playwright codegen http://localhosst:8000/profile --load-storage playwright/.auth/user.json -o tests/login-record.spec.ts

@@ -26,11 +26,11 @@ test.describe("TC-LGN-001", { tag: "@Valid Login" }, () => {
       await page.getByLabel("Password").fill(adminPassword);
       await page.getByRole("button", { name: "login" }).click();
 
-      await expect(page).toHaveURL("http://localhost:8000/");
+      await expect(page).toHaveURL("http://localhost:8000/dashboard");
     });
   });
 
-  test.describe("Login Admin", { tag: "@Valid User Login" }, () => {
+  test.describe("Login User", { tag: "@Valid User Login" }, () => {
     test("As user i want to login successfully", async ({ page }) => {
       await page.goto("http://localhost:8000");
       await page.getByRole("button", { name: "" }).click();
